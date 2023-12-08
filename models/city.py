@@ -6,9 +6,13 @@ from sqlalchemy.orm import relationship
 
 
 class City(BaseModel, Base):
-    """ The city class, contains state ID and name """
+    """This is the class for City
+    Attributes:
+        state_id: The state id
+        name: input name
+    """
     __tablename__ = "cities"
     name = Column(String(128), nullable=False)
     state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
-    name = relationship("Place", cascade='all, delete, delete-orphan',
-                        backref="cities")
+    places = relationship("Place", cascade='all, delete, delete-orphan',
+                          backref="cities")
